@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/Cupcake.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders</title>
+</head>
+<body>
+
+<header>
+  <img src="../public/images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" width="100%"/>
+</header>
+
+<h1>Customer Orders</h1>
+
+<form action="/submitCustomerOrder" method="post">
+  <table class="order-table">
+    <thead>
+    <tr>
+      <th>order_id</th>
+      <th>antal</th>
+      <th>sum</th>
+      <th>user_id</th>
+      <th>delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+      <td><input type="text" name="orderId" th:value="${order.orderId}" readonly/></td>
+      <td><input type="text" name="antal" th:value="${order.antal}" readonly/></td>
+      <td><input type="text" name="sum" th:value="${order.sum}" readonly/></td>
+      <td><input type="text" name="userId" th:value="${order.userId}" readonly/></td>
+      <td>
+        <button type="submit" name="orderId" th:value="${order.orderId}" formaction="/deleteOrder">Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+
+</body>
+</html>
